@@ -16,11 +16,10 @@ defmodule SimEx.Client do
       client_id: state[:client_id],
       host: host,
       port: port,
-      ssl: true
+      # ssl: true
     ]
 
     MQTT.connect(mqtt_pid, options)
-    MQTT.ping(mqtt_pid)
 
     schedule_work(state[:sleeptime])
 
