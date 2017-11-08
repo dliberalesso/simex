@@ -10,6 +10,6 @@ defmodule SimEx do
   def rand do
     mean = Application.get_env(:simex, :sleeptime_mean)
     sd = Application.get_env(:simex, :sleeptime_sd)
-    mean + :rand.normal * sd
+    round(mean + :rand.normal * sd)
   end
 end
