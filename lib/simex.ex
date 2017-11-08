@@ -1,7 +1,9 @@
 defmodule SimEx do
-  def hello do
-    :hello
-  end
+  # use Application
+  #
+  # def start(_type, _args) do
+  #   SimEx.Supervisor.start_link(name: SimEx.Supervisor)
+  # end
 
   @doc """
   Generates a random integer inside a normal distribution.

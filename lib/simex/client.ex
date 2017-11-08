@@ -1,6 +1,6 @@
 defmodule SimEx.Client do
   use GenServer
-  alias SimEx.Client.MQTT
+  alias SimEx.MQTT
 
   def start_link(args) do
     GenServer.start_link(__MODULE__, args)
