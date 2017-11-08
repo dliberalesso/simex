@@ -7,7 +7,7 @@ defmodule SimEx do
     {:ok, pid}
   end
 
-  # Whe should turn this ont a GenStage
+  # Whe should turn this into a GenStage
   def spawn_clients(number) do
     generate_states(number)
     |> Enum.map(fn state -> SimEx.Supervisor.start_client(state) end)
