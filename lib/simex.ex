@@ -7,13 +7,7 @@ defmodule SimEx do
     {:ok, pid}
   end
 
-  # Whe should turn this into a GenStage
   def spawn_clients(number) do
-    generate_states(number)
-    |> Enum.map(fn state -> SimEx.Supervisor.start_client(state) end)
-  end
-
-  defp generate_states(number) do
     generate_state = fn(_) ->
       sleeptime = rand()
       first = :crypto.strong_rand_bytes(32) |> Base.encode64 |> binary_part(0, 32)
@@ -22,7 +16,11 @@ defmodule SimEx do
     end
 
     Enum.to_list(1..number)
-    |> Enum.map(generate_state)
+    |> Flow.from_enumerable
+    |> Flow.map(generate_state)
+    |> Flow.partition
+    |> Flow.map(fn state -> SimEx.Supervisor.start_client(state) end)
+    |> Flow.run
   end
 
   @doc """

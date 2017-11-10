@@ -20,7 +20,9 @@ defmodule SimEx.Mixfile do
 
   defp deps do
     [
-      {:hulaaki, "~> 0.1.0"}
+      {:hulaaki, "~> 0.1.0"},
+      {:flow, "~> 0.11"},
+      {:benchee, "~> 0.10", only: :dev}
     ]
   end
 end
