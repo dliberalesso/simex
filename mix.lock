@@ -2,4 +2,5 @@
   "deep_merge": {:hex, :deep_merge, "0.1.1", "c27866a7524a337b6a039eeb8dd4f17d458fd40fbbcb8c54661b71a22fffe846", [], [], "hexpm"},
   "flow": {:hex, :flow, "0.12.0", "32c5a5f3ff6693e004b6c17a8c64dce2f8cdaf9564912d79427176013a586ab6", [], [{:gen_stage, "~> 0.12.0", [hex: :gen_stage, repo: "hexpm", optional: false]}], "hexpm"},
   "gen_stage": {:hex, :gen_stage, "0.12.2", "e0e347cbb1ceb5f4e68a526aec4d64b54ad721f0a8b30aa9d28e0ad749419cbb", [], [], "hexpm"},
-  "hulaaki": {:hex, :hulaaki, "0.1.0", "c063ae43d245fcd1555ea3dcd21b5b167c8d7a175db529c3e34edc19aae267c8", [], [], "hexpm"}}
+  "hulaaki": {:hex, :hulaaki, "0.1.0", "c063ae43d245fcd1555ea3dcd21b5b167c8d7a175db529c3e34edc19aae267c8", [], [], "hexpm"},
+  "logger_file_backend": {:hex, :logger_file_backend, "0.0.10", "876f9f84ae110781207c54321ffbb62bebe02946fe3c13f0d7c5f5d8ad4fa910", [], [], "hexpm"}}

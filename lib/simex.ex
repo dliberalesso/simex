@@ -1,7 +1,9 @@
 defmodule SimEx do
   use Application
+  alias SimEx.Utils
 
   def start(_type, _args) do
+    :observer.start()
     {:ok, pid} = SimEx.Supervisor.start_link([])
     spawn_clients(Application.get_env(:simex, :clients))
     {:ok, pid}
@@ -17,19 +19,9 @@ defmodule SimEx do
   end
 
   def generate_state do
-    sleeptime = rand()
-    first = :crypto.strong_rand_bytes(32) |> Base.encode64 |> binary_part(0, 32)
+    sleeptime = Utils.rand()
+    first = Utils.string_of_length(32)
     client_id = "#{first}-#{sleeptime}"
     %{client_id: client_id, sleeptime: sleeptime}
-  end
-
-  @doc """
-  Generates a random integer inside a normal distribution.
-  Uses `:sleeptime_mean` and `:sleeptime_sd` defined at `config/config.exs`.
-  """
-  def rand do
-    mean = Application.get_env(:simex, :sleeptime_mean)
-    sd = Application.get_env(:simex, :sleeptime_sd)
-    round(mean + :rand.normal * sd)
   end
 end

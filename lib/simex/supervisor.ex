@@ -10,7 +10,7 @@ defmodule SimEx.Supervisor do
   end
 
   def init(:ok) do
-    spec = Supervisor.child_spec(SimEx.Client, start: {SimEx.Client, :start_link, []})
+    spec = Supervisor.child_spec(SimEx.Client, start: {SimEx.Client, :start_link, []}, restart: :temporary)
     Supervisor.init([spec], strategy: :simple_one_for_one)
   end
 end

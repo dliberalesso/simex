@@ -22,7 +22,8 @@ defmodule SimEx.Mixfile do
     [
       {:hulaaki, "~> 0.1.0"},
       {:flow, "~> 0.11"},
-      {:benchee, "~> 0.10", only: :dev}
+      {:benchee, "~> 0.10", only: :dev},
+      {:logger_file_backend, "~> 0.0.7"}
     ]
   end
 end

@@ -18,3 +18,9 @@ erl_crash.dump
 
 # Also ignore archive artifacts (built via "mix archive.build").
 *.ez
+
+# Ignore Log folder
+/log
+
+# Ignore MAC stuff
+.DS_Store
