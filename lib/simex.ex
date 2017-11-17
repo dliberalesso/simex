@@ -15,8 +15,13 @@ defmodule SimEx do
     |> Flow.map(fn _ -> generate_state() end)
     |> Flow.partition
     |> Flow.map(fn state -> SimEx.Supervisor.start_client(state) end)
+    |> Flow.partition
+    |> Flow.map(&do_work/1)
     |> Flow.run
   end
+
+  def do_work({:ok, pid}), do: SimEx.Client.work(pid)
+  def do_work(_), do: nil
 
   def generate_state do
     sleeptime = Utils.rand()

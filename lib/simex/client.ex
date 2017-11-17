@@ -6,24 +6,28 @@ defmodule SimEx.Client do
     GenServer.start_link(__MODULE__, args)
   end
 
-  def init(%{} = state) do
-    host = Application.get_env(:simex, :host)
-    port = Application.get_env(:simex, :port)
+  def work(pid) do
+    GenServer.cast(pid, :work)
+  end
 
+  def init(%{} = state) do
     {:ok, mqtt_pid} = MQTT.start_link(%{})
 
     options = [
       client_id: state[:client_id],
-      host: host,
-      port: port,
+      host: Application.get_env(:simex, :host),
+      port: Application.get_env(:simex, :port),
       # ssl: true
     ]
 
     MQTT.connect(mqtt_pid, options)
 
-    schedule_work(state[:sleeptime])
-
     {:ok, Map.put(state, :mqtt_pid, mqtt_pid)}
+  end
+
+  def handle_cast(:work, state) do
+    schedule_work(state[:sleeptime])
+    {:noreply, state}
   end
 
   def handle_info(:publish, state) do
