@@ -11,8 +11,7 @@ config :simex,
   port: 1883,
   topic: "test",
   clients: 1000, #max connections on my machine without ssl
-  sleeptime_mean: 1000,
-  sleeptime_sd: 50,
+  distribution: {:normal, [mean: 1000, sd: 50]},
   csv_file_path: path.()
 
   config :logger,
