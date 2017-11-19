@@ -11,7 +11,7 @@ config :simex,
   port: 1883,
   topic: "test",
   clients: 1000, #max connections on my machine without ssl
-  distribution: {:normal, [mean: 1000, sd: 50]},
+  distribution: {:normal, [mean: 1000, sd: 50]}
 
   config :logger,
     backends: [{LoggerFileBackend, :info}]
