@@ -12,7 +12,6 @@ config :simex,
   topic: "test",
   clients: 1000, #max connections on my machine without ssl
   distribution: {:normal, [mean: 1000, sd: 50]},
-  csv_file_path: path.()
 
   config :logger,
     backends: [{LoggerFileBackend, :info}]
