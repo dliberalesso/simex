@@ -1,6 +1,6 @@
 defmodule SimEx do
   use Application
-  alias SimEx.Utils
+  alias SimEx.Random
 
   def start(_type, _args) do
     :observer.start()
@@ -24,9 +24,16 @@ defmodule SimEx do
   def do_work(_), do: nil
 
   def generate_state do
-    sleeptime = Utils.rand()
-    first = Utils.string_of_length(32)
+    sleeptime = Random.rand()
+    first = string_of_length(32)
     client_id = "#{first}-#{sleeptime}"
     %{client_id: client_id, sleeptime: sleeptime}
+  end
+
+  defp string_of_length(length) do
+    chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789" |> String.split("")
+    Enum.reduce((1..length), [], fn (_i, acc) ->
+      [Enum.random(chars) | acc]
+    end) |> Enum.join("")
   end
 end
