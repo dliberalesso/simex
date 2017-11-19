@@ -8,7 +8,7 @@ defmodule SimEx.Utils do
   def rand do
     mean = Application.get_env(:simex, :sleeptime_mean)
     sd = Application.get_env(:simex, :sleeptime_sd)
-    round(mean + :rand.normal * sd)
+    round(:rand.normal(mean, :math.pow(sd, 2)))
   end
 
   def string_of_length(length) do
