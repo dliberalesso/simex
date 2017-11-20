@@ -5,6 +5,8 @@ defmodule SimEx do
   def start(_type, _args) do
     :observer.start()
     {:ok, pid} = SimEx.Supervisor.start_link([])
+    {:ok, _bucket_pid} = SimEx.Monitor.start_link()
+    {:ok, _info_pid} = SimEx.Info.start_link()
     spawn_clients(Application.get_env(:simex, :clients))
     {:ok, pid}
   end
